@@ -110,9 +110,9 @@ A summary of the access policies in place can be found in the table below.
 | Name     | Publicly Accessible | Allowed IP Addresses |
 |----------|---------------------|----------------------|
 | JumpBox  | Yes                 |   WorkstationIP      |
-| WEB-1    | NO                  |    10.1.0.4          |
-| WEB-2    | NO                  |    10.1.0.4          |
-| WEB-3    | NO                  |    10.1.0.4          |
+| WEB-1    | NO                  |    10.1.0.6          |
+| WEB-2    | NO                  |    10.1.0.7          |
+| WEB-3    | NO                  |    10.1.0.8          |
 
 ### Elk Configuration
 
@@ -129,17 +129,20 @@ The playbook implements the following tasks:
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps_output.png)
+![Docker ps output](/Resources/Images/docker_ps_output.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- _TODO: List the IP addresses of the machines you are monitoring_
+- 10.1.0.6 
+- 10.1.0.7
 
 We have installed the following Beats on these machines:
-- _TODO: Specify which Beats you successfully installed_
+- Filebeat
+- Metricbeat
 
 These Beats allow us to collect the following information from each machine:
-- _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
+- [FiLebeat](https://www.elastic.co/beats/filebeat): Monitors changes in the files and/or logs specified and sends the data to other services such as Logstash or [Elasticsearch](https://www.elastic.co/elasticsearch/).
+- [MetricBeat](https://www.elastic.co/beats/metricbeat): Collects metrics on system-level CPU usage, memory, file system, disk IO, and network IO statistics, as well as top-like statistics for every process running on your systems.
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
