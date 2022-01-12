@@ -78,13 +78,13 @@ The main purpose of this network is to expose a load-balanced and monitored inst
 
 Load balancing ensures that the application will be highly [available](https://www.fortinet.com/resources/cyberglossary/cia-triad), in addition to restricting access to the network. Therefore better resisting DDoS attacks.
 
-The [Jumpbox](https://docs.microsoft.com/en-us/learn/modules/connect-vm-with-azure-bastion/), or Bastion Host, ensures that for any administrative tasks, the deployment is made in a safe enviroment. We must connect to the Jumpbox using RDP or SSH and then perform any activities from whithin it. In this case, we must allow connections to the JumpBox VM from only our IP using a Network Security Group: **RedTeamSG**. 
+The [Jump-box](https://docs.microsoft.com/en-us/learn/modules/connect-vm-with-azure-bastion/), or Bastion Host, ensures that for any administrative tasks, the deployment is made in a safe enviroment. We must connect to the Jumpbox using RDP or SSH and then perform any activities from whithin it. In this case, we must allow connections to the JumpBox VM from only our IP using a Network Security Group: **RedTeamSG**. 
 
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the files and system logs and metrics.
 
-- [FileBeat](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-overview.html#:~:text=Filebeat%20is%20a%20lightweight%20shipper,Elasticsearch%20or%20Logstash%20for%20indexing): Watches for changes to logged data in specific log files we specify, usually the Elasticsearch or Logstash.
-- [Metric Beat](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-overview.html#:~:text=Metricbeat%20is%20a%20lightweight%20shipper,such%20as%20Elasticsearch%20or%20Logstash): Collects metrics from the OS and/or services running on the machine and delivers the data to a set output, usually the Elasticsearch or Logstash.
+- [Filebeat](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-overview.html#:~:text=Filebeat%20is%20a%20lightweight%20shipper,Elasticsearch%20or%20Logstash%20for%20indexing): Watches for changes to logged data in specific log files we specify, usually the Elasticsearch or Logstash.
+- [Metricbeat](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-overview.html#:~:text=Metricbeat%20is%20a%20lightweight%20shipper,such%20as%20Elasticsearch%20or%20Logstash): Collects metrics from the OS and/or services running on the machine and delivers the data to a set output, usually the Elasticsearch or Logstash.
 
 
 | Name     | Function | IP Address | Operating System   |
@@ -177,7 +177,7 @@ SSH into the control node and follow the steps below:
     sudo dpkg -i filebeat-7.16.2-amd64.deb
     ```
     
-    ### Install MetricBeat:
+    ### Install Metricbeat:
 
     ```
     curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.6.2-amd64.deb
