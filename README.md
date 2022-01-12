@@ -170,17 +170,16 @@ SSH into the control node and follow the steps below:
 
   - Run the playbook, and navigate to the ` http://ELK_VM_IP:5601 ` to check that the installation worked as expected.
 
-    Install Filebeat:
+   ### Install Filebeat:
 
     ```
     curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.16.2-amd64.deb
     sudo dpkg -i filebeat-7.16.2-amd64.deb
     ```
-
-    ```yaml
-    - name: Copy filebeat.yml
-      copy:
-        src: ./files/filebeat.yml
-        dest: ~/etc/metricbeat/filebeat.yml
-    ```
     
+    ### Install MetricBeat:
+
+    ```
+    curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.6.2-amd64.deb
+    sudo dpkg -i metricbeat-7.6.2-amd64.deb
+    ```
