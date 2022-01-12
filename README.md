@@ -8,7 +8,7 @@ The files in this repository were used to configure the network depicted below.
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the [install-elk.yml](Resources/Scripts/install-elk.yml) file may be used to install only certain pieces of it, such as Filebeat.
 
-```
+```yaml
 - name: Configure Elk VM with Docker
   hosts: elk
   remote_user: azadmin
@@ -135,6 +135,7 @@ The following screenshot displays the result of running `docker ps` after succes
 This ELK server is configured to monitor the following machines:
 - 10.1.0.6 
 - 10.1.0.7
+- 10.1.0.8
 
 We have installed the following Beats on these machines:
 - Filebeat
@@ -148,13 +149,38 @@ These Beats allow us to collect the following information from each machine:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the _____ file to _____.
-- Update the _____ file to include...
-- Run the playbook, and navigate to ____ to check that the installation worked as expected.
+- Copy the [filebeat-playbook.yml](Resources/Scripts/filebeat-playbook.yml) file to `/etc/ansible/roles`.
+- Update the `/etc/ansible/hosts` file to include the VMs (WEB-1, WEB-2) private IPs
 
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
+    ``` 
+   (...)
+    [webservers]
+    10.1.0.6 ansible_python_interpreter=/usr/bin/python3
+    10.1.0.7 ansible_python_interpreter=/usr/bin/python3
+    10.1.0.8 ansible_python_interpreter=/usr/bin/python3
 
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+    # List the IP address of your ELK server
+    # There should only be one IP address
+    [elk]
+    10.2.0.4 ansible_python_interpreter=/usr/bin/python3
+    ```
+
+    In order to make Ansible run the playbook on a specific machine, we need to update the [hosts](/Resources/Ansible/hosts) as shown above. That way we specify in which machines in the network we are installing **Filebeat** and the **ELK Server**  
+  - [Playbook](Resources/Scripts/filebeat-playbook.yml) 
+
+  - Run the playbook, and navigate to the ` http://ELK_VM_IP:5601 ` to check that the installation worked as expected.
+
+    Install Filebeat:
+
+    ```
+    curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.16.2-amd64.deb
+    sudo dpkg -i filebeat-7.16.2-amd64.deb
+    ```
+
+    ```yaml
+    - name: Copy filebeat.yml
+      copy:
+        src: ./files/filebeat.yml
+        dest: ~/etc/metricbeat/filebeat.yml
+    ```
+    
