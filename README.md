@@ -76,7 +76,7 @@ This document contains the following details:
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable **Web** Application.
 
-Load balancing ensures that the application will be highly [available](https://www.fortinet.com/resources/cyberglossary/cia-triad), in addition to restricting access to the network. Therefore better resisting DDoS attacks.
+Load balancing ensures that the application will be highly [available](https://www.fortinet.com/resources/cyberglossary/cia-triad), in addition to restricting access to the servers. Therefore better resisting DDoS attacks.
 
 The [Jump-box](https://docs.microsoft.com/en-us/learn/modules/connect-vm-with-azure-bastion/), or Bastion Host, ensures that for any administrative tasks, the deployment is made in a safe enviroment. We must connect to the Jumpbox using RDP or SSH and then perform any activities from whithin it. In this case, we must allow connections to the JumpBox VM from only our IP using a Network Security Group: **RedTeamSG**. 
 
